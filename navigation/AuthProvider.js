@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import * as firebase from "firebase";
 import * as Google from "expo-google-app-auth";
+import * as Facebook from "expo-facebook";
 
 export const AuthContext = createContext();
 
@@ -23,35 +24,53 @@ export const AuthProvider = ({ children }) => {
         },
         googleLogin: async () => {
           setLoading(true);
-          let user = null,
-            loginSuccess = true;
-          try {
-            const result = await Google.logInAsync({
-              androidClientId: `31112638099-fdnr48eh0pcnftt5ljiog642tt2di9ee.apps.googleusercontent.com`,
-              scopes: ["email"],
+          await Google.logInAsync({
+            androidClientId: ``,
+            scopes: ["email"],
+          })
+            .then((result) => {
+              if (result.type === "success") {
+                const { idToken, accessToken } = result;
+                const credential = firebase.auth.GoogleAuthProvider.credential(
+                  idToken,
+                  accessToken
+                );
+
+                return firebase.auth().signInWithCredential(credential);
+              }
+              return Promise.reject();
+            })
+            .catch((error) => {
+              // ...
             });
-            if (result.type === "success") {
-              /* `accessToken` is now valid and can be used to get data from the Google API with HTTP requests */
-              user = result.user;
-              await firebase
+
+          setLoading(false);
+        },
+        facebookLogin: async () => {
+          setLoading(true);
+          try {
+            await Facebook.initializeAsync("");
+            const { type, token } =
+              await Facebook.logInWithReadPermissionsAsync({
+                permissions: ["public_profile", "email"],
+              });
+
+            if (type === "success") {
+              const credential =
+                firebase.auth.FacebookAuthProvider.credential(token);
+              firebase
                 .auth()
-                .createUserWithEmailAndPassword(user.email, user.id);
+                .signInWithCredential(credential)
+                .catch((error) => {
+                  console.log(error);
+                });
+            } else {
+              alert(type);
             }
-            // ca:3b:d2:f7:04:70:25:c0:5a:39:24:1a:14:fb:ec:6a:d3:a2:43:52
-          } catch (e) {
-            loginSuccess = false;
-            console.log(e, e.code);
+          } catch ({ message }) {
+            alert(`Facebook Login Error: ${message}`);
           }
 
-          if (!loginSuccess && user != null) {
-            try {
-              await firebase
-                .auth()
-                .signInWithEmailAndPassword(user.email, user.id);
-            } catch (e) {
-              console.log(e, e.code);
-            }
-          }
           setLoading(false);
         },
         register: async (email, password) => {

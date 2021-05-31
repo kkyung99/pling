@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -10,14 +10,14 @@ import {
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 import SocialButton from "../components/SocialButton";
-import { useContext } from "react";
 import { AuthContext } from "../navigation/AuthProvider";
+import * as Animatable from "react-native-animatable";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  const { login, googleLogin, loading } = useContext(AuthContext);
+  const { login, googleLogin, facebookLogin, loading } =
+    useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
             zIndex: 1,
           }}
         >
-          <Text style={{ color: "#fff" }}>Loading...</Text>
+          <Text style={{ color: "#fff", fontSize: 30 }}>Loading...</Text>
         </View>
       ) : null}
       <View style={styles.header}>
@@ -64,6 +64,7 @@ const LoginScreen = ({ navigation }) => {
           iconType="lock"
           secureTextEntry={true}
         />
+
         <FormButton
           buttonTitle="LOGIN"
           onPress={() => login(email, password)}
@@ -75,27 +76,20 @@ const LoginScreen = ({ navigation }) => {
 
         <View style={styles.btnContainer}>
           <SocialButton
-            // buttonTitle="Sign In with Facebook"
             btnType="facebook"
             color="#4867aa"
             backgroundColor="#e6eaf4"
-            onPress={() => {}}
+            onPress={() => {
+              facebookLogin();
+            }}
           />
           <SocialButton
-            // buttonTitle="Sign In with Google"
             btnType="google"
             color="#de4d41"
             backgroundColor="#f5e7ea"
             onPress={() => {
               googleLogin();
             }}
-          />
-          <SocialButton
-            // buttonTitle="Sign In with Twitter"
-            btnType="twitter"
-            color="#00ACEE"
-            backgroundColor="#d9ecff"
-            onPress={() => {}}
           />
         </View>
 

@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
-import SocialButton from "../components/SocialButton";
 import { AuthContext } from "../navigation/AuthProvider";
 
 const SignupScreen = ({ navigation }) => {
@@ -62,30 +61,6 @@ const SignupScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.btnContainer}>
-          <SocialButton
-            // buttonTitle="Sign In with Facebook"
-            btnType="facebook"
-            color="#4867aa"
-            backgroundColor="#e6eaf4"
-            onPress={() => {}}
-          />
-          <SocialButton
-            // buttonTitle="Sign In with Google"
-            btnType="google"
-            color="#de4d41"
-            backgroundColor="#f5e7ea"
-            onPress={() => {}}
-          />
-          <SocialButton
-            // buttonTitle="Sign In with Twitter"
-            btnType="twitter"
-            color="#00ACEE"
-            backgroundColor="#d9ecff"
-            onPress={() => {}}
-          />
-        </View>
-
         <TouchableOpacity
           style={styles.navButton}
           onPress={() => navigation.navigate("Login")}
@@ -109,17 +84,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   footer: {
-    flex: 3,
+    flex: 2,
     backgroundColor: "#fff",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
-  },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    margin: 10,
   },
   text_header: {
     color: "#fff",
@@ -133,6 +103,7 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     textAlign: "center",
+    margin: 30,
     fontSize: 15,
     fontWeight: "500",
     color: "#2e64e5",
