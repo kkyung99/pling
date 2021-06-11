@@ -11,7 +11,6 @@ import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
 import SocialButton from "../components/SocialButton";
 import { AuthContext } from "../navigation/AuthProvider";
-import * as Animatable from "react-native-animatable";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();

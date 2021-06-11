@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import * as firebase from "firebase";
 import * as Google from "expo-google-app-auth";
 import * as Facebook from "expo-facebook";
+import "firebase/firestore";
 
 export const AuthContext = createContext();
 
@@ -37,8 +38,10 @@ export const AuthProvider = ({ children }) => {
                 );
 
                 return firebase.auth().signInWithCredential(credential);
+
+                // Successful sign in is handled by firebase.auth().onAuthStateChanged
               }
-              return Promise.reject();
+              return Promise.reject(); // Or handle user cancelation separatedly
             })
             .catch((error) => {
               // ...

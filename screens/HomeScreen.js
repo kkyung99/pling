@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import FormButton from "../components/FormButton";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
           flexDirection: "row",
         }}
       >
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <Icon
             name="sunny"
             color={"#63C9EF"}
@@ -34,15 +34,14 @@ const HomeScreen = ({ navigation }) => {
           color={"#63C9EF"}
           size={30}
           style={{ marginRight: 15 }}
-        />
+        /> */}
       </View>
 
-      <FormButton
-        buttonTitle="등록하기"
+      <TouchableOpacity
         onPress={() => navigation.navigate("PlantSelectScreen")}
-      />
-
-      {/* <Text style={styles.text}>Welcome</Text> */}
+      >
+        <FontAwesome name="plus-circle" color={"#AABCA6"} size={85} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -53,8 +52,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#f9fafd",
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   text: {
