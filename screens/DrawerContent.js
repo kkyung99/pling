@@ -1,22 +1,25 @@
-import React from "react";
-import { useContext } from "react";
-import { View, Image, StyleSheet } from "react-native";
-import { Drawer } from "react-native-paper";
-import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import { AuthContext } from "../navigation/AuthProvider";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { windowWidth } from "../utils/Dimentions";
+import React from 'react';
+import { useContext } from 'react';
+import { View, Image, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Drawer } from 'react-native-paper';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { AuthContext } from '../navigation/AuthProvider';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { windowWidth } from '../utils/Dimentions';
 
 export function DrawerContent(props) {
   const { logout } = useContext(AuthContext);
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* <StatusBar barStyle="dark-content" backgroundColor="#EBEBEB" /> */}
+
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <Image
-            source={require("../assets/default_logo.png")}
+            source={require('../assets/logo_main.png')}
             style={styles.logo}
           />
 
@@ -27,7 +30,7 @@ export function DrawerContent(props) {
               )}
               label="Home"
               onPress={() => {
-                props.navigation.navigate("Home");
+                props.navigation.navigate('Home');
               }}
             />
             <DrawerItem
@@ -36,7 +39,7 @@ export function DrawerContent(props) {
               )}
               label="Calendar"
               onPress={() => {
-                props.navigation.navigate("Calendar");
+                props.navigation.navigate('Calendar');
               }}
             />
             <DrawerItem
@@ -51,7 +54,7 @@ export function DrawerContent(props) {
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -64,12 +67,14 @@ const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     marginBottom: 15,
-    borderTopColor: "#f4f4f4",
+    borderTopColor: '#f4f4f4',
     borderTopWidth: 1,
   },
   logo: {
-    height: 150,
+    height: 100,
     width: windowWidth * 0.5,
-    resizeMode: "center",
+    resizeMode: 'contain',
+    marginTop: 20,
+    marginBottom: 20,
   },
 });

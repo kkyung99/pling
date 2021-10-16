@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-} from "react-native";
-import FormInput from "../components/FormInput";
-import FormButton from "../components/FormButton";
-import { AuthContext } from "../navigation/AuthProvider";
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const SignupScreen = ({ navigation }) => {
   const { register } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" backgroundColor="#EBEBEB" />
       <View style={styles.header}>
         <Text style={styles.text_header}>회원가입</Text>
       </View>
@@ -48,14 +49,14 @@ const SignupScreen = ({ navigation }) => {
           <Text style={styles.textPrivate}>
             By registering, you comfirm that you accept our
           </Text>
-          <TouchableOpacity onPress={() => alert("Terms Clicked!")}>
-            <Text style={[styles.color_textPrivate, { color: "#e88832" }]}>
+          <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
+            <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
               Terms of service
             </Text>
           </TouchableOpacity>
           <Text style={styles.color_textPrivate}>and</Text>
           <TouchableOpacity>
-            <Text style={[styles.color_textPrivate, { color: "#e88832" }]}>
+            <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
               Privacy Policy
             </Text>
           </TouchableOpacity>
@@ -63,7 +64,7 @@ const SignupScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.navButton}
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate('Login')}
         >
           <Text style={styles.navButtonText}>Have an account? Sign In</Text>
         </TouchableOpacity>
@@ -77,47 +78,55 @@ export default SignupScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#AABCA6",
+    backgroundColor: '#AABCA6',
   },
   header: {
     flex: 1,
     paddingHorizontal: 20,
   },
+  // footer: {
+  //   flex: 2,
+  //   backgroundColor: '#fff',
+  //   borderTopLeftRadius: 30,
+  //   borderTopRightRadius: 30,
+  //   paddingHorizontal: 20,
+  //   paddingVertical: 30,
+  // },
   footer: {
-    flex: 2,
-    backgroundColor: "#fff",
+    flex: 3,
+    backgroundColor: '#FFF',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
-    textAlign: "center",
+    textAlign: 'center',
   },
 
   navButton: {
     marginTop: 15,
   },
   navButtonText: {
-    textAlign: "center",
+    textAlign: 'center',
     margin: 30,
     fontSize: 15,
-    fontWeight: "500",
-    color: "#2e64e5",
+    fontWeight: '500',
+    color: '#2e64e5',
   },
   textPrivate: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     marginVertical: 20,
-    justifyContent: "center",
-    textAlign: "center",
+    // justifyContent: 'center',
+    textAlign: 'center',
   },
   color_textPrivate: {
     fontSize: 13,
-    color: "grey",
-    textAlign: "center",
+    color: 'grey',
+    textAlign: 'center',
   },
 });
