@@ -8,7 +8,6 @@ import { androidId, iosId, facebookId } from '@env';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState([]);
 
@@ -17,17 +16,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         loading,
         setLoading,
-        user,
-        setUser,
         check,
         setCheck,
-        login: async (email, password) => {
-          try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
-        },
         googleLogin: async () => {
           setLoading(true);
           await Google.logInAsync({
@@ -76,15 +66,6 @@ export const AuthProvider = ({ children }) => {
             alert(`Facebook Login Error: ${message}`);
           }
           setLoading(false);
-        },
-        register: async (email, password) => {
-          try {
-            await firebase
-              .auth()
-              .createUserWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
         },
         logout: async () => {
           try {
