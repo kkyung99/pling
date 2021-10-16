@@ -8,6 +8,7 @@ import { androidId, iosId, facebookId } from '@env';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [check, setCheck] = useState([]);
 
@@ -16,6 +17,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         loading,
         setLoading,
+        user,
+        setUser,
         check,
         setCheck,
         googleLogin: async () => {
