@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Alert,
   Platform,
-  LogBox,
 } from 'react-native';
 import { CommonActions } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -20,8 +19,6 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 export default function PlantSelectDetails({ navigation }) {
-  // LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
-
   const route = useRoute();
   const title = route.params.plantTitle;
   const image = route.params.plantSrc;

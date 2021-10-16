@@ -73,21 +73,20 @@ const question = [
 ];
 
 export default function QuestionCards({ navigation }) {
-  const route = useRoute(); //{ dateString: date.dateString }=route.parms
+  const route = useRoute();
   const [item, setItem] = useState('');
 
   useEffect(() => {
     (async () => {
-      if (!route.params || !route.params.dateString) return; // false || true =>true
-      const { dateString } = route.params; //const dateString = route.params.dateString;
-      const card = (await AsyncStorage.getItem(dateString)) || ''; //"" = 배열
+      if (!route.params || !route.params.dateString) return;
+      const { dateString } = route.params;
+      const card = (await AsyncStorage.getItem(dateString)) || '';
       console.log(card);
       if (card) {
-        setItem(question[parseInt(card, 10)]); // question 배열의 몇번칸인지
+        setItem(question[parseInt(card, 10)]);
       }
     })();
-  }, [route]); //배열안에 값이 바뀔때 useEffect첫번째 함수를 호출한다.
-  //유저가 회원가입을 하는시점에 배열을 셔플로
+  }, [route]);
 
   const [post, setPost] = useState('');
 
@@ -105,7 +104,7 @@ export default function QuestionCards({ navigation }) {
         .add(postObj)
         .then(() => {
           Alert.alert('등록완료', '게시글이 등록되었습니다!');
-          setPost(''); //입력칸 초기화
+          setPost('');
           navigation.navigate('Calendar');
         });
     } else {

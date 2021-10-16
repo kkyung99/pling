@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import { View, Image, StyleSheet, StatusBar } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Drawer } from 'react-native-paper';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
@@ -14,8 +14,6 @@ export function DrawerContent(props) {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <StatusBar barStyle="dark-content" backgroundColor="#EBEBEB" /> */}
-
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <Image

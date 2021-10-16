@@ -43,15 +43,9 @@ export const AuthProvider = ({ children }) => {
               );
 
               return firebase.auth().signInWithCredential(credential);
-
-              // Successful sign in is handled by firebase.auth().onAuthStateChanged
             }
-            return null; // Or handle user cancelation separatedly
-            // Promise.reject()
+            return null;
           });
-          // .catch((error) => {
-          //   // ...
-          // });
 
           setLoading(false);
         },
