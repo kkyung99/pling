@@ -5,11 +5,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  StatusBar,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
 import { windowHeight } from '../utils/Dimentions';
@@ -29,7 +25,6 @@ const LoginScreen = ({ navigation }) => {
   } else {
     return (
       <View style={styles.container}>
-        {/* <StatusBar barStyle="dark-content" backgroundColor="#EBEBEB" /> */}
         {loading ? (
           <Animatable.View
             style={{

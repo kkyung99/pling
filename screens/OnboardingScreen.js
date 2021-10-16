@@ -2,10 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   StyleSheet,
-  StatusBar,
   ImageBackground,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';

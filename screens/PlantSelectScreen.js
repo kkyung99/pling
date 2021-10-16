@@ -7,10 +7,8 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import { windowHeight, windowWidth } from '../utils/Dimentions';
 
 export default function PlantSelectScreen({ navigation }) {
   const [imageData, setImageData] = useState([
