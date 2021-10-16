@@ -5,9 +5,6 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "facebookScheme": "fb2585494001745799",
-    "facebookAppId": "2585494001745799",
-    "facebookDisplayName": "pling",
     "facebookAutoInitEnabled": true,
     "facebookAutoLogAppEventsEnabled": true,
     "splash": {

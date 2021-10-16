@@ -1,11 +1,5 @@
-import React, { useState, useContext } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
 import { windowHeight } from '../utils/Dimentions';
@@ -14,7 +8,7 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 const LoginScreen = ({ navigation }) => {
-  const { googleLogin, facebookLogin, loading } = useContext(AuthContext);
+  const { googleLogin, loading } = useContext(AuthContext);
 
   let [fontsLoaded] = useFonts({
     'notoSansKR-bold': require('../assets/fonts/NotoSansKR-Bold.ttf'),
@@ -78,22 +72,13 @@ const LoginScreen = ({ navigation }) => {
               style={{
                 textAlign: 'center',
                 fontSize: 30,
-                marginTop: 40,
+                marginTop: windowHeight * 0.05,
                 fontFamily: 'notoSansKR-bold',
               }}
             >
               Login
             </Text>
             <View style={styles.btnContainer}>
-              <SocialButton
-                buttonTitle="Sign In with Facebook"
-                btnType="facebook"
-                color="#4867aa"
-                backgroundColor="#e6eaf4"
-                onPress={() => {
-                  facebookLogin();
-                }}
-              />
               <SocialButton
                 buttonTitle="Sign In with Google"
                 btnType="google"
@@ -124,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   header: {
-    height: 0.61 * windowHeight,
+    height: 0.7 * windowHeight,
     backgroundColor: '#F2F2F2',
     alignItems: 'center',
     justifyContent: 'center',
@@ -146,7 +131,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'column',
     margin: 20,
-    marginTop: 40,
+    marginTop: windowHeight * 0.06,
     paddingHorizontal: 30,
   },
 });

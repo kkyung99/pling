@@ -1,9 +1,8 @@
 import React, { createContext, useState } from 'react';
 import * as firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
-import * as Facebook from 'expo-facebook';
 import 'firebase/firestore';
-import { androidId, iosId, facebookId } from '@env';
+import { androidId, iosId } from '@env';
 
 export const AuthContext = createContext();
 
@@ -40,34 +39,6 @@ export const AuthProvider = ({ children }) => {
             return null;
           });
 
-          setLoading(false);
-        },
-        facebookLogin: async () => {
-          setLoading(true);
-
-          try {
-            await Facebook.initializeAsync(facebookId);
-            const { type, token } =
-              await Facebook.logInWithReadPermissionsAsync({
-                permissions: ['public_profile', 'email'],
-              });
-            console.log(type, token);
-            if (type === 'success') {
-              const credential =
-                firebase.auth.FacebookAuthProvider.credential(token);
-              console.log(credential);
-              firebase
-                .auth()
-                .signInWithCredential(credential)
-                .catch((error) => {
-                  console.log(error);
-                });
-            } else {
-              // alert(type);
-            }
-          } catch ({ message }) {
-            alert(`Facebook Login Error: ${message}`);
-          }
           setLoading(false);
         },
         logout: async () => {
