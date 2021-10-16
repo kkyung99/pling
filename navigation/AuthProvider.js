@@ -21,13 +21,6 @@ export const AuthProvider = ({ children }) => {
         setUser,
         check,
         setCheck,
-        login: async (email, password) => {
-          try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
-        },
         googleLogin: async () => {
           setLoading(true);
           await Google.logInAsync({
@@ -43,15 +36,9 @@ export const AuthProvider = ({ children }) => {
               );
 
               return firebase.auth().signInWithCredential(credential);
-
-              // Successful sign in is handled by firebase.auth().onAuthStateChanged
             }
-            return null; // Or handle user cancelation separatedly
-            // Promise.reject()
+            return null;
           });
-          // .catch((error) => {
-          //   // ...
-          // });
 
           setLoading(false);
         },
@@ -82,15 +69,6 @@ export const AuthProvider = ({ children }) => {
             alert(`Facebook Login Error: ${message}`);
           }
           setLoading(false);
-        },
-        register: async (email, password) => {
-          try {
-            await firebase
-              .auth()
-              .createUserWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
         },
         logout: async () => {
           try {

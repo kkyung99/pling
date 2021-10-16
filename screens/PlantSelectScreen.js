@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 10,
     borderRadius: 15,
-    overflow: 'hidden', //필요
+    overflow: 'hidden',
     textAlign: 'center',
   },
   image: {
@@ -114,9 +114,5 @@ const styles = StyleSheet.create({
     height: 100,
     resizeMode: 'contain',
     zIndex: 1,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowColor: 'black',
-    // shadowOpacity: 0.2,
-    // shadowRadius: 2,
   },
 });

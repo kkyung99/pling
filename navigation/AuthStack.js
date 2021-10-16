@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
-// AsyncStorage.clear();
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   let routeName;
