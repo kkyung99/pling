@@ -164,66 +164,66 @@ const HomeScreen = ({ navigation }) => {
                 </Text>
               </View>
             ) : (
-              <View style={styles.cardPlant}>
-                <Image
-                  source={idToImageMap[item.plantPicture]}
-                  style={{
-                    width: '100%',
-                    height: '82%',
-                    alignSelf: 'center',
-                  }}
-                  resizeMode="contain"
-                />
-                <View
-                  style={{
-                    position: 'absolute',
-                    top: '82.5%',
-                    alignSelf: 'center',
-                  }}
-                >
-                  <Text style={{ fontFamily: 'notoSansKR-bold', fontSize: 20 }}>
-                    {item.nickname}
-                  </Text>
+                <View style={styles.cardPlant}>
+                  <Image
+                    source={idToImageMap[item.plantPicture]}
+                    style={{
+                      width: '100%',
+                      height: '82%',
+                      alignSelf: 'center',
+                    }}
+                    resizeMode="contain"
+                  />
+                  <View
+                    style={{
+                      position: 'absolute',
+                      top: '83%',
+                      alignSelf: 'center',
+                    }}
+                  >
+                    <Text style={{ fontFamily: 'notoSansKR-bold', fontSize: 20 }}>
+                      {item.nickname}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      position: 'absolute',
+                      backgroundColor: '#355F5D',
+                      right: windowWidth * 0.5,
+                      bottom: windowHeight * 0.01,
+                      width: windowWidth * 0.35,
+                      borderRadius: 30,
+                      elevation: 2,
+                      shadowOffset: { width: 0, height: 2 },
+                      shadowColor: 'black',
+                      shadowOpacity: 0.2,
+                      shadowRadius: 2,
+                    }}
+                  >
+                    <Text style={styles.plantDay}>D - {calDay(item)}</Text>
+                  </View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      Alert.alert(
+                        '알림',
+                        "'" + item.nickname + "'" + ' 식물을 삭제하시겠습니까?',
+                        [
+                          {
+                            text: '아니요',
+                            onPress: () => console.log('삭제 불가'),
+                            style: 'cancel',
+                          },
+                          { text: '네', onPress: () => deletePlant(item) },
+                        ],
+                        { cancelable: false }
+                      );
+                    }}
+                    style={styles.delete}
+                  >
+                    <Text style={styles.deletetxt}>삭제하기</Text>
+                  </TouchableOpacity>
                 </View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    backgroundColor: '#355F5D',
-                    right: windowWidth * 0.5,
-                    bottom: windowHeight * 0.01,
-                    width: windowWidth * 0.35,
-                    borderRadius: 30,
-                    elevation: 2,
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowColor: 'black',
-                    shadowOpacity: 0.2,
-                    shadowRadius: 2,
-                  }}
-                >
-                  <Text style={styles.plantDay}>D - {calDay(item)}</Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => {
-                    Alert.alert(
-                      '알림',
-                      "'" + item.nickname + "'" + ' 식물을 삭제하시겠습니까?',
-                      [
-                        {
-                          text: '아니요',
-                          onPress: () => console.log('삭제 불가'),
-                          style: 'cancel',
-                        },
-                        { text: '네', onPress: () => deletePlant(item) },
-                      ],
-                      { cancelable: false }
-                    );
-                  }}
-                  style={styles.delete}
-                >
-                  <Text style={styles.deletetxt}>삭제하기</Text>
-                </TouchableOpacity>
-              </View>
-            )
+              )
           }
           ref={ref}
         />
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   cardPlant: {
     borderRadius: 15,
     textAlign: 'center',
-    height: '87%',
+    height: '85%',
     overflow: 'hidden',
   },
   delete: {

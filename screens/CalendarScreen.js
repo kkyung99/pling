@@ -194,7 +194,7 @@ export default function CalendarScreen({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView style={{ marginTop: 50 }}>
           <View style={{ alignSelf: 'center', width: '90%' }}>
             <Calendar
@@ -292,38 +292,38 @@ export default function CalendarScreen({ navigation }) {
                     </TouchableOpacity>
                   </View>
                 ) : (
-                  <View style={styles.cardPost}>
-                    <Text style={styles.cardTitle}>{item.question}</Text>
-                    <Text style={styles.cardContent}>{item.text}</Text>
-                    <Text style={styles.cardDate}>{item.createdAt}</Text>
-                    <TouchableOpacity
-                      style={styles.deleteIcon}
-                      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-                      onPress={() => {
-                        Alert.alert(
-                          '알림',
-                          '정말 삭제하시겠습니까?',
-                          [
-                            {
-                              text: '아니요',
-                              onPress: () => console.log('삭제 불가'),
-                              style: 'cancel',
-                            },
-                            { text: '네', onPress: () => deletePost(item) },
-                          ],
-                          { cancelable: false }
-                        );
-                      }}
-                    >
-                      <FontAwesome name="trash" size={15} color={'gray'} />
-                    </TouchableOpacity>
-                  </View>
-                )}
+                    <View style={styles.cardPost}>
+                      <Text style={styles.cardTitle}>{item.question}</Text>
+                      <Text style={styles.cardContent}>{item.text}</Text>
+                      <Text style={styles.cardDate}>{item.createdAt}</Text>
+                      <TouchableOpacity
+                        style={styles.deleteIcon}
+                        hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+                        onPress={() => {
+                          Alert.alert(
+                            '알림',
+                            '정말 삭제하시겠습니까?',
+                            [
+                              {
+                                text: '아니요',
+                                onPress: () => console.log('삭제 불가'),
+                                style: 'cancel',
+                              },
+                              { text: '네', onPress: () => deletePost(item) },
+                            ],
+                            { cancelable: false }
+                          );
+                        }}
+                      >
+                        <FontAwesome name="trash" size={15} color={'gray'} />
+                      </TouchableOpacity>
+                    </View>
+                  )}
               </View>
             )}
           />
         </ScrollView>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -331,8 +331,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFAEF',
-    paddingBottom: windowHeight * 0.1,
-    // paddingBottom: Platform.OS === 'ios' ? 60 : 96,
+    paddingBottom: Platform.OS === 'ios' ? 70 : windowHeight * 0.112,
   },
   timeline: {
     paddingTop: 15,

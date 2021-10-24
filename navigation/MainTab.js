@@ -50,7 +50,8 @@ const MainTab = ({ navigation }) => {
           backgroundColor: '#355F5D',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
-          height: windowHeight * 0.1,
+          elevation: 0,
+          height: windowHeight * 0.112,
           ...styles.shadow,
         },
       }}
@@ -68,6 +69,7 @@ const MainTab = ({ navigation }) => {
               style={{
                 alignSelf: 'flex-end',
                 paddingRight: '10%',
+                marginTop: Platform.OS === 'ios' ? windowHeight * 0.01 : 0,
               }}
             />
           ),
@@ -88,6 +90,8 @@ const MainTab = ({ navigation }) => {
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginTop: Platform.OS === 'ios' ? windowHeight * 0.01 : 0,
+
               }}
               onPress={() => {
                 if (check.length > 3) {
@@ -100,7 +104,7 @@ const MainTab = ({ navigation }) => {
                 }
               }}
             >
-              <FontAwesome name="plus" color={color} size={25} />
+              <FontAwesome name="plus" color={color} size={30} />
             </TouchableOpacity>
           ),
           tabBarVisible: false,
@@ -119,6 +123,7 @@ const MainTab = ({ navigation }) => {
               style={{
                 alignSelf: 'flex-start',
                 paddingLeft: '10%',
+                marginTop: Platform.OS === 'ios' ? windowHeight * 0.01 : 0,
               }}
             />
           ),

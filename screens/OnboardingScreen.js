@@ -102,7 +102,7 @@ const OnboardingScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <AppIntroSlider
         renderItem={renderItem}
         data={slides}
@@ -114,7 +114,7 @@ const OnboardingScreen = ({ navigation }) => {
         showPrevButton
         onDone={() => navigation.navigate('Login')}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
