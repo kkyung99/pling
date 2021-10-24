@@ -5,7 +5,8 @@ import {
   Alert,
   StyleSheet,
   FlatList,
-  Platform,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,6 +16,7 @@ import * as firebase from 'firebase';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { windowHeight } from '../utils/Dimentions';
 
 LocaleConfig.locales['fr'] = {
   monthNames: [
@@ -192,136 +194,136 @@ export default function CalendarScreen({ navigation }) {
     return <AppLoading />;
   } else {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={{ alignSelf: 'center', width: '90%', marginTop: 44 }}>
-          <Calendar
-            current={date}
-            minDate={'2021-01-01'}
-            maxDate={'2022-12-31'}
-            markedDates={mark}
-            onDayPress={(day) => {
-              let find = false;
-              for (let i = 0; i < posts.length; i++) {
-                if (day.dateString === posts[i].createdAt) {
-                  find = true;
-                  Alert.alert(
-                    '이미 게시글을 작성하였습니다!',
-                    '하루에 한 게시글만 작성할 수 있습니다'
-                  );
-                  break;
+      <View style={styles.container}>
+        <ScrollView style={{ marginTop: 50 }}>
+          <View style={{ alignSelf: 'center', width: '90%' }}>
+            <Calendar
+              current={date}
+              minDate={'2021-01-01'}
+              maxDate={'2022-12-31'}
+              markedDates={mark}
+              onDayPress={(day) => {
+                let find = false;
+                for (let i = 0; i < posts.length; i++) {
+                  if (day.dateString === posts[i].createdAt) {
+                    find = true;
+                    Alert.alert(
+                      '이미 게시글을 작성하였습니다!',
+                      '하루에 한 게시글만 작성할 수 있습니다'
+                    );
+                    break;
+                  }
                 }
-              }
-              if (!find) {
-                onDayPress(day);
-              }
-            }}
-            onDayLongPress={(day) => {
-              console.log('selected day', day);
-            }}
-            monthFormat={'yyyy MM'}
-            onMonthChange={(month) => {
-              console.log('month changed', month);
-            }}
-            hideArrows={false}
-            hideExtraDays={false}
-            disableMonthChange={true}
-            firstDay={0}
-            hideDayNames={false}
-            showWeekNumbers={false}
-            onPressArrowLeft={(substractMonth) => substractMonth()}
-            onPressArrowRight={(addMonth) => addMonth()}
-            disableArrowLeft={false}
-            disableArrowRight={false}
-            disableAllTouchEventsForDisabledDays={true}
-            theme={{
-              textSectionTitleColor: '#355F5D',
-              calendarBackground: '#FFFAEF',
-              selectedDayTextColor: 'white',
-              todayTextColor: '#AABC6A',
-              dayTextColor: '#5D746C',
-              dotColor: '#355F5D',
-              arrowColor: '#355F5D',
-              monthTextColor: '#5D746C',
-              textDayFontFamily: 'notoSansKR-regular',
-              textMonthFontFamily: 'notoSansKR-bold',
-              textDayHeaderFontFamily: 'notoSansKR-regular',
-              textDayFontSize: 16,
-              textMonthFontSize: 16,
-              textDayHeaderFontSize: 16,
-            }}
-            style={{
-              marginTop: 20,
-              paddingBottom: 10,
-              borderRadius: 15,
-            }}
+                if (!find) {
+                  onDayPress(day);
+                }
+              }}
+              onDayLongPress={(day) => {
+                console.log('selected day', day);
+              }}
+              monthFormat={'yyyy MM'}
+              onMonthChange={(month) => {
+                console.log('month changed', month);
+              }}
+              hideArrows={false}
+              hideExtraDays={false}
+              disableMonthChange={true}
+              firstDay={0}
+              hideDayNames={false}
+              showWeekNumbers={false}
+              onPressArrowLeft={(substractMonth) => substractMonth()}
+              onPressArrowRight={(addMonth) => addMonth()}
+              disableArrowLeft={false}
+              disableArrowRight={false}
+              disableAllTouchEventsForDisabledDays={true}
+              theme={{
+                textSectionTitleColor: '#355F5D',
+                calendarBackground: '#FFFAEF',
+                selectedDayTextColor: 'white',
+                todayTextColor: '#AABC6A',
+                dayTextColor: '#5D746C',
+                dotColor: '#355F5D',
+                arrowColor: '#355F5D',
+                monthTextColor: '#5D746C',
+                textDayFontFamily: 'notoSansKR-regular',
+                textMonthFontFamily: 'notoSansKR-bold',
+                textDayHeaderFontFamily: 'notoSansKR-regular',
+                textDayFontSize: 16,
+                textMonthFontSize: 16,
+                textDayHeaderFontSize: 16,
+              }}
+              style={{
+                // marginTop: 20,
+                paddingBottom: 10,
+                borderRadius: 15,
+              }}
+            />
+          </View>
+          <Text style={styles.timeline}>TIMELINE</Text>
+          <FlatList
+            keyExtractor={(item) => item.id}
+            data={posts}
+            renderItem={({ item }) => (
+              <View>
+                {item.question == '' ? (
+                  <View style={styles.cardPost2}>
+                    <Text style={styles.cardContent2}>{item.text}</Text>
+                    <Text style={styles.cardDate}>{item.createdAt}</Text>
+                    <TouchableOpacity
+                      style={styles.deleteIcon}
+                      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+                      onPress={() => {
+                        Alert.alert(
+                          '알림',
+                          '정말 삭제하시겠습니까?',
+                          [
+                            {
+                              text: '아니요',
+                              onPress: () => console.log('삭제 불가'),
+                              style: 'cancel',
+                            },
+                            { text: '네', onPress: () => deletePost(item) },
+                          ],
+                          { cancelable: false }
+                        );
+                      }}
+                    >
+                      <FontAwesome name="trash" size={15} color={'gray'} />
+                    </TouchableOpacity>
+                  </View>
+                ) : (
+                  <View style={styles.cardPost}>
+                    <Text style={styles.cardTitle}>{item.question}</Text>
+                    <Text style={styles.cardContent}>{item.text}</Text>
+                    <Text style={styles.cardDate}>{item.createdAt}</Text>
+                    <TouchableOpacity
+                      style={styles.deleteIcon}
+                      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+                      onPress={() => {
+                        Alert.alert(
+                          '알림',
+                          '정말 삭제하시겠습니까?',
+                          [
+                            {
+                              text: '아니요',
+                              onPress: () => console.log('삭제 불가'),
+                              style: 'cancel',
+                            },
+                            { text: '네', onPress: () => deletePost(item) },
+                          ],
+                          { cancelable: false }
+                        );
+                      }}
+                    >
+                      <FontAwesome name="trash" size={15} color={'gray'} />
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
+            )}
           />
-        </View>
-        <Text style={styles.timeline}>TIMELINE</Text>
-        <FlatList
-          keyExtractor={(item) => item.id}
-          data={posts}
-          renderItem={({ item }) => (
-            <View>
-              {item.question == '' ? (
-                <View style={styles.cardPost2}>
-                  <Text style={styles.cardContent2}>{item.text}</Text>
-                  <Text style={styles.cardDate}>{item.createdAt}</Text>
-                  <View style={styles.deleteIcon}>
-                    <FontAwesome
-                      name="trash"
-                      size={13}
-                      color={'gray'}
-                      onPress={() => {
-                        Alert.alert(
-                          '알림',
-                          '정말 삭제하시겠습니까?',
-                          [
-                            {
-                              text: '아니요',
-                              onPress: () => console.log('삭제 불가'),
-                              style: 'cancel',
-                            },
-                            { text: '네', onPress: () => deletePost(item) },
-                          ],
-                          { cancelable: false }
-                        );
-                      }}
-                    />
-                  </View>
-                </View>
-              ) : (
-                <View style={styles.cardPost}>
-                  <Text style={styles.cardTitle}>{item.question}</Text>
-                  <Text style={styles.cardContent}>{item.text}</Text>
-                  <Text style={styles.cardDate}>{item.createdAt}</Text>
-                  <View style={styles.deleteIcon}>
-                    <FontAwesome
-                      name="trash"
-                      size={13}
-                      color={'gray'}
-                      onPress={() => {
-                        Alert.alert(
-                          '알림',
-                          '정말 삭제하시겠습니까?',
-                          [
-                            {
-                              text: '아니요',
-                              onPress: () => console.log('삭제 불가'),
-                              style: 'cancel',
-                            },
-                            { text: '네', onPress: () => deletePost(item) },
-                          ],
-                          { cancelable: false }
-                        );
-                      }}
-                    />
-                  </View>
-                </View>
-              )}
-            </View>
-          )}
-        />
-      </SafeAreaView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -329,7 +331,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFAEF',
-    paddingBottom: Platform.OS === 'ios' ? 60 : 96,
+    paddingBottom: windowHeight * 0.1,
+    // paddingBottom: Platform.OS === 'ios' ? 60 : 96,
   },
   timeline: {
     paddingTop: 15,
@@ -343,10 +346,10 @@ const styles = StyleSheet.create({
   cardPost: {
     backgroundColor: '#FFF',
     borderRadius: 15,
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 3,
     elevation: 3,
     margin: 15,
     marginBottom: 5,
@@ -357,10 +360,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 0.5,
     borderColor: '#FFF6E0',
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: { width: 0, height: 1 },
     shadowColor: 'black',
     shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowRadius: 3,
     elevation: 3,
     margin: 15,
     marginBottom: 5,

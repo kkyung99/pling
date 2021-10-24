@@ -169,7 +169,7 @@ const HomeScreen = ({ navigation }) => {
                   source={idToImageMap[item.plantPicture]}
                   style={{
                     width: '100%',
-                    height: windowHeight * 0.65,
+                    height: '82%',
                     alignSelf: 'center',
                   }}
                   resizeMode="contain"
@@ -177,7 +177,7 @@ const HomeScreen = ({ navigation }) => {
                 <View
                   style={{
                     position: 'absolute',
-                    top: windowHeight * 0.632,
+                    top: '82.5%',
                     alignSelf: 'center',
                   }}
                 >
@@ -191,7 +191,7 @@ const HomeScreen = ({ navigation }) => {
                     backgroundColor: '#355F5D',
                     right: windowWidth * 0.5,
                     bottom: windowHeight * 0.01,
-                    width: 140,
+                    width: windowWidth * 0.35,
                     borderRadius: 30,
                     elevation: 2,
                     shadowOffset: { width: 0, height: 2 },
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     flex: 1,
     alignItems: 'center',
-    padding: windowHeight * 0.04,
+    paddingTop: 50,
   },
   text: {
     fontSize: 20,
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   cardPlant: {
     borderRadius: 15,
     textAlign: 'center',
-    height: windowHeight * 0.75,
+    height: '87%',
     overflow: 'hidden',
   },
   delete: {
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#355F5D',
     left: windowWidth * 0.5,
     bottom: windowHeight * 0.01,
-    width: 140,
+    width: windowWidth * 0.35,
     borderRadius: 30,
     elevation: 2,
     shadowOffset: { width: 0, height: 2 },

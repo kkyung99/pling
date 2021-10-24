@@ -17,6 +17,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import * as firebase from 'firebase';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import { windowWidth } from '../utils/Dimentions';
 
 export default function PlantSelectDetails({ navigation }) {
   const route = useRoute();
@@ -27,16 +28,11 @@ export default function PlantSelectDetails({ navigation }) {
   const [value, setValue] = useState('0');
 
   // Platform === 'ios
-  const [idate1, setIdate1] = useState(new Date());
-  const [idate2, setIdate2] = useState(new Date());
+  const [idate, setIdate] = useState(new Date());
   const mode = 'date';
 
-  const onChange1 = (event, selectedDate) => {
-    const currentDate = selectedDate || idate1;
-    setIdate1(currentDate);
-  };
-  const onChange2 = (event, selectedDate) => {
-    const currentDate = selectedDate || idate2;
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || idate;
     setIdate2(currentDate);
   };
 
@@ -57,8 +53,7 @@ export default function PlantSelectDetails({ navigation }) {
         nickname: plantName,
         type: title,
         plantPicture: image,
-        plantDay: getFormatDate(idate1),
-        lastWater: getFormatDate(idate2),
+        lastWater: getFormatDate(idate),
         waterCycle: value + 1,
         creatorId: firebase.auth().currentUser.uid,
         createdAt: new Date(),
@@ -105,8 +100,7 @@ export default function PlantSelectDetails({ navigation }) {
 
   const currentDate = year + '-' + month + '-' + day;
 
-  const [adate2, setAdate2] = useState(currentDate);
-  const [adate1, setAdate1] = useState(currentDate);
+  const [adate, setAdate] = useState(currentDate);
 
   const addPlant = async () => {
     if (plantName == '' || value == null) {
@@ -116,8 +110,7 @@ export default function PlantSelectDetails({ navigation }) {
         nickname: plantName,
         type: title,
         plantPicture: image,
-        plantDay: adate1,
-        lastWater: adate2,
+        lastWater: adate,
         waterCycle: value + 1,
         creatorId: firebase.auth().currentUser.uid,
         createdAt: new Date(),
@@ -171,54 +164,13 @@ export default function PlantSelectDetails({ navigation }) {
                     setPlantName(plantNameValue)
                   }
                 />
-
-                <Text style={styles.titleText2}> 식물 입양 날</Text>
-                {Platform.OS === 'android' ? (
-                  <DatePicker
-                    style={styles.datepick}
-                    value={adate1}
-                    mode="date"
-                    placeholder={adate1}
-                    format="YYYY-MM-DD"
-                    minDate="2021-01-01"
-                    maxDate="2023-12-31"
-                    confirmBtnText="확인"
-                    cancelBtnText="취소"
-                    customStyles={{
-                      dateIcon: {
-                        justifyContent: 'center',
-                      },
-                      dateInput: {
-                        alignItems: 'center',
-                      },
-                    }}
-                    onDateChange={(adate1) => {
-                      setAdate1(adate1);
-                    }}
-                    useNativeDriver={true}
-                  />
-                ) : (
-                    true && (
-                      <DateTimePicker
-                        testID="dateTimePicker"
-                        style={styles.datepick}
-                        value={idate1}
-                        mode={mode}
-                        is24Hour={true}
-                        display="default"
-                        onChange={onChange1}
-                        locale="KO"
-                        useNativeDriver={true}
-                      />
-                    )
-                  )}
                 <Text style={styles.titleText2}> 마지막 물 준 날</Text>
                 {Platform.OS === 'android' ? (
                   <DatePicker
                     style={styles.datepick}
-                    value={adate2}
+                    value={adate}
                     mode="date"
-                    placeholder={adate2}
+                    placeholder={adate}
                     minDate="2021-01-01"
                     maxDate="2023-12-31"
                     confirmBtnText="확인"
@@ -231,27 +183,27 @@ export default function PlantSelectDetails({ navigation }) {
                         alignItems: 'center',
                       },
                     }}
-                    onDateChange={(adate2) => {
-                      setAdate2(adate2);
+                    onDateChange={(adate) => {
+                      setAdate(adate);
                     }}
                     useNativeDriver={true}
                   />
                 ) : (
-                    true && (
-                      <DateTimePicker
-                        testID="dateTimePicker"
-                        style={styles.datepick}
-                        value={idate2}
-                        mode={mode}
-                        format="YYYY-MM-DD"
-                        is24Hour={true}
-                        display="default"
-                        onChange={onChange2}
-                        locale="KO"
-                        useNativeDriver={true}
-                      />
-                    )
-                  )}
+                  true && (
+                    <DateTimePicker
+                      testID="dateTimePicker"
+                      style={styles.datepick}
+                      value={idate}
+                      mode={mode}
+                      format="YYYY-MM-DD"
+                      is24Hour={true}
+                      display="default"
+                      onChange={onChange}
+                      locale="KO"
+                      useNativeDriver={true}
+                    />
+                  )
+                )}
                 <Text style={styles.titleText3}> 물 주기</Text>
                 <ModalDropdown
                   onSelect={(value) => {
@@ -337,11 +289,11 @@ const styles = StyleSheet.create({
     flex: 0.5,
   },
   footer: {
-    flex: 2,
+    flex: 1.5,
     backgroundColor: 'white',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    paddingVertical: 50,
+    paddingTop: 40,
     paddingHorizontal: 30,
   },
   titleText: {
@@ -357,7 +309,7 @@ const styles = StyleSheet.create({
     color: '#355F5D',
   },
   titleText2: {
-    marginTop: 20,
+    marginTop: 25,
     marginBottom: 10,
     paddingTop: 25,
     fontSize: 18,
@@ -378,7 +330,7 @@ const styles = StyleSheet.create({
     width: 200,
     alignSelf: 'center',
     borderRadius: 30,
-    marginTop: 40,
+    marginTop: 50,
     marginBottom: 20,
     paddingVertical: 14,
     backgroundColor: '#355F5D',
@@ -391,14 +343,14 @@ const styles = StyleSheet.create({
   },
 
   titleText3: {
-    paddingTop: 25,
+    paddingTop: 30,
     fontSize: 18,
     color: '#355F5D',
     fontFamily: 'notoSansKR-bold',
   },
   datepick: {
-    width: '50%',
-    marginTop: 20,
+    width: Platform.OS === 'android' ? '50%' : windowWidth * 0.3,
+    marginTop: 15,
     alignSelf: 'center',
   },
 });

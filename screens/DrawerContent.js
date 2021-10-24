@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: 100,
-    width: windowWidth * 0.5,
+    width: Platform.OS === 'ios' ? windowWidth * 0.5 : windowWidth * 0.5,
     resizeMode: 'contain',
     marginTop: 20,
     marginBottom: 20,

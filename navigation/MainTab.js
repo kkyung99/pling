@@ -23,6 +23,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { CommonActions } from '@react-navigation/native';
+import { windowHeight } from '../utils/Dimentions';
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
@@ -49,7 +50,7 @@ const MainTab = ({ navigation }) => {
           backgroundColor: '#355F5D',
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
-          height: Platform.OS === 'ios' ? 96 : 96,
+          height: windowHeight * 0.1,
           ...styles.shadow,
         },
       }}
@@ -67,7 +68,6 @@ const MainTab = ({ navigation }) => {
               style={{
                 alignSelf: 'flex-end',
                 paddingRight: '10%',
-                marginTop: Platform.OS === 'ios' ? 15 : 0,
               }}
             />
           ),
@@ -88,7 +88,6 @@ const MainTab = ({ navigation }) => {
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: Platform.OS === 'ios' ? 15 : 0,
               }}
               onPress={() => {
                 if (check.length > 3) {
@@ -120,7 +119,6 @@ const MainTab = ({ navigation }) => {
               style={{
                 alignSelf: 'flex-start',
                 paddingLeft: '10%',
-                marginTop: Platform.OS === 'ios' ? 15 : 0,
               }}
             />
           ),

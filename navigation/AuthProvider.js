@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { Alert } from 'react-native';
 import * as firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
 import 'firebase/firestore';
@@ -20,6 +21,14 @@ export const AuthProvider = ({ children }) => {
         setUser,
         check,
         setCheck,
+        login: async (email, password) => {
+          try {
+            await firebase.auth().signInWithEmailAndPassword(email, password);
+          } catch (e) {
+            Alert.alert('오류', e.message);
+            console.log(e);
+          }
+        },
         googleLogin: async () => {
           setLoading(true);
           await Google.logInAsync({
@@ -40,6 +49,16 @@ export const AuthProvider = ({ children }) => {
           });
 
           setLoading(false);
+        },
+        register: async (email, password) => {
+          try {
+            await firebase
+              .auth()
+              .createUserWithEmailAndPassword(email, password);
+          } catch (e) {
+            Alert.alert('오류', e.message);
+            console.log(e);
+          }
         },
         logout: async () => {
           try {

@@ -13,6 +13,7 @@ const SocialButton = ({
   ...rest
 }) => {
   let bgColor = backgroundColor;
+
   let [fontsLoaded] = useFonts({
     'notoSansKR-bold': require('../assets/fonts/NotoSansKR-Bold.ttf'),
   });
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     borderRadius: 60,
+    marginBottom: 10,
   },
   iconWrapper: {
     width: 30,
