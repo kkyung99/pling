@@ -33,7 +33,7 @@ export default function PlantSelectDetails({ navigation }) {
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || idate;
-    setIdate2(currentDate);
+    setIdate(currentDate);
   };
 
   function getFormatDate(date) {
@@ -189,21 +189,21 @@ export default function PlantSelectDetails({ navigation }) {
                     useNativeDriver={true}
                   />
                 ) : (
-                  true && (
-                    <DateTimePicker
-                      testID="dateTimePicker"
-                      style={styles.datepick}
-                      value={idate}
-                      mode={mode}
-                      format="YYYY-MM-DD"
-                      is24Hour={true}
-                      display="default"
-                      onChange={onChange}
-                      locale="KO"
-                      useNativeDriver={true}
-                    />
-                  )
-                )}
+                    true && (
+                      <DateTimePicker
+                        testID="dateTimePicker"
+                        style={styles.datepick}
+                        value={idate}
+                        mode={mode}
+                        format="YYYY-MM-DD"
+                        is24Hour={true}
+                        display="default"
+                        onChange={onChange}
+                        locale="KO"
+                        useNativeDriver={true}
+                      />
+                    )
+                  )}
                 <Text style={styles.titleText3}> 물 주기</Text>
                 <ModalDropdown
                   onSelect={(value) => {
