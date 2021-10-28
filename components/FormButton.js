@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '../utils/Dimentions';
+import { windowHeight } from '../utils/Dimentions';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 const FormButton = ({ buttonTitle, ...rest }) => {

@@ -7,7 +7,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
 
-AsyncStorage.clear();
 const AuthStack = () => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   let routeName;
@@ -48,25 +47,25 @@ const AuthStack = () => {
         component={SignupScreen}
         options={{ header: () => null }}
 
-      // options={({ navigation }) => ({
-      //   title: '',
-      //   headerStyle: {
-      //     backgroundColor: '#F2F2F2',
-      //     shadowColor: '#F2F2F2',
-      //     elevation: 0,
-      //   },
-      //   headerLeft: () => (
-      //     <View style={{ marginLeft: 10 }}>
-      //       <FontAwesome.Button
-      //         name="long-arrow-left"
-      //         size={25}
-      //         backgroundColor="#F2F2F2"
-      //         color="gray"
-      //         onPress={() => navigation.navigate('Login')}
-      //       />
-      //     </View>
-      //   ),
-      // })}
+        // options={({ navigation }) => ({
+        //   title: '',
+        //   headerStyle: {
+        //     backgroundColor: '#F2F2F2',
+        //     shadowColor: '#F2F2F2',
+        //     elevation: 0,
+        //   },
+        //   headerLeft: () => (
+        //     <View style={{ marginLeft: 10 }}>
+        //       <FontAwesome.Button
+        //         name="long-arrow-left"
+        //         size={25}
+        //         backgroundColor="#F2F2F2"
+        //         color="gray"
+        //         onPress={() => navigation.navigate('Login')}
+        //       />
+        //     </View>
+        //   ),
+        // })}
       />
     </Stack.Navigator>
   );
