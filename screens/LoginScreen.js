@@ -91,7 +91,8 @@ const LoginScreen = ({ navigation }) => {
               style={{
                 textAlign: 'center',
                 fontSize: 30,
-                marginTop: 20,
+                marginTop: windowHeight * 0.05,
+                marginBottom: windowHeight * 0.03,
                 fontFamily: 'notoSansKR-bold',
               }}
             >
@@ -122,141 +123,128 @@ const LoginScreen = ({ navigation }) => {
               style={styles.forgotButton}
               onPress={() => navigation.navigate('Signup')}
             >
-              <Text style={styles.navButtonText}>
+              <Text style={[styles.navButtonText, { margin: 45 }]}>
                 Don't have an account? Create here
               </Text>
             </TouchableOpacity>
-            <View style={styles.btnContainer}>
-              <SocialButton
-                buttonTitle="Sign In with Google"
-                btnType="google"
-                color="#de4d41"
-                backgroundColor="#f5e7ea"
-                onPress={() => {
-                  googleLogin();
-                }}
-              />
-            </View>
-
             <TouchableOpacity
-              style={styles.forgotButton}
               onPress={() => navigation.navigate('Signup')}
             ></TouchableOpacity>
           </View>
         </View>
-      </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView >
     ) : (
-      <View style={styles.container}>
-        {loading ? (
-          <Animatable.View
-            style={{
-              backgroundColor: '#00000099',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1,
-            }}
-          >
-            <Animatable.Text
-              animation="bounce"
-              iterationCount={'infinite'}
-              direction="normal"
+        <View style={styles.container}>
+          {loading ? (
+            <Animatable.View
               style={{
-                color: '#fff',
-                fontSize: 25,
-                fontFamily: 'notoSansKR-bold',
+                backgroundColor: '#00000099',
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 1,
               }}
             >
-              Loading...
-            </Animatable.Text>
-          </Animatable.View>
-        ) : null}
-        <ScrollView>
-          <View style={styles.header}>
-            <Image
-              source={require('../assets/logo_main.png')}
-              style={styles.logo}
-            />
-          </View>
-
-          <View style={styles.footer}>
-            <View
-              style={{
-                ...StyleSheet.absoluteFillObject,
-                backgroundColor: '#F2F2F2',
-              }}
-            />
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: 'white',
-                borderTopLeftRadius: 100,
-              }}
-            >
-              <Text
+              <Animatable.Text
+                animation="bounce"
+                iterationCount={'infinite'}
+                direction="normal"
                 style={{
-                  textAlign: 'center',
-                  fontSize: 30,
-                  marginTop: 20,
+                  color: '#fff',
+                  fontSize: 25,
                   fontFamily: 'notoSansKR-bold',
                 }}
               >
-                Login
-              </Text>
-              <FormInput
-                labelValue={email}
-                onChangeText={(userEmail) => setEmail(userEmail)}
-                placeholderText="Email"
-                iconType="user"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
+                Loading...
+            </Animatable.Text>
+            </Animatable.View>
+          ) : null}
+          <ScrollView>
+            <View style={styles.header}>
+              <Image
+                source={require('../assets/logo_main.png')}
+                style={styles.logo}
               />
-              <FormInput
-                labelValue={password}
-                onChangeText={(userPassword) => setPassword(userPassword)}
-                placeholderText="Password"
-                iconType="lock"
-                secureTextEntry={true}
-              />
-
-              <FormButton
-                buttonTitle="LOGIN"
-                onPress={() => login(email, password)}
-              />
-              <TouchableOpacity
-                style={styles.forgotButton}
-                onPress={() => navigation.navigate('Signup')}
-              >
-                <Text style={styles.navButtonText}>
-                  Don't have an account? Create here
-                </Text>
-              </TouchableOpacity>
-              <View style={styles.btnContainer}>
-                <SocialButton
-                  buttonTitle="Sign In with Google"
-                  btnType="google"
-                  color="#de4d41"
-                  backgroundColor="#f5e7ea"
-                  onPress={() => {
-                    googleLogin();
-                  }}
-                />
-              </View>
-
-              <TouchableOpacity
-                style={styles.forgotButton}
-                onPress={() => navigation.navigate('Signup')}
-              ></TouchableOpacity>
             </View>
-          </View>
-        </ScrollView>
-      </View>
-    );
+
+            <View style={styles.footer}>
+              <View
+                style={{
+                  ...StyleSheet.absoluteFillObject,
+                  backgroundColor: '#F2F2F2',
+                }}
+              />
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: 'white',
+                  borderTopLeftRadius: 100,
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontSize: 30,
+                    marginTop: windowHeight * 0.05,
+                    marginBottom: windowHeight * 0.03,
+                    fontFamily: 'notoSansKR-bold',
+                  }}
+                >
+                  Login
+              </Text>
+                <FormInput
+                  labelValue={email}
+                  onChangeText={(userEmail) => setEmail(userEmail)}
+                  placeholderText="Email"
+                  iconType="user"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                />
+                <FormInput
+                  labelValue={password}
+                  onChangeText={(userPassword) => setPassword(userPassword)}
+                  placeholderText="Password"
+                  iconType="lock"
+                  secureTextEntry={true}
+                />
+
+                <FormButton
+                  buttonTitle="LOGIN"
+                  onPress={() => login(email, password)}
+                />
+                <TouchableOpacity
+                  style={styles.forgotButton}
+                  onPress={() => navigation.navigate('Signup')}
+                >
+                  <Text style={styles.navButtonText}>
+                    Don't have an account? Create here
+                </Text>
+                </TouchableOpacity>
+                <View style={styles.btnContainer}>
+                  <SocialButton
+                    buttonTitle="Sign In with Google"
+                    btnType="google"
+                    color="#de4d41"
+                    backgroundColor="#f5e7ea"
+                    onPress={() => {
+                      googleLogin();
+                    }}
+                  />
+                </View>
+
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Signup')}
+                ></TouchableOpacity>
+              </View>
+            </View>
+          </ScrollView>
+        </View>
+      );
   }
 };
 

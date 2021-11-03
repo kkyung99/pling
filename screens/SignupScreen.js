@@ -52,8 +52,8 @@ const SignupScreen = ({ navigation }) => {
               style={{
                 textAlign: 'center',
                 fontSize: 30,
-                marginTop: 30,
-                marginBottom: 10,
+                marginTop: windowHeight * 0.05,
+                marginBottom: windowHeight * 0.03,
                 fontFamily: 'notoSansKR-bold',
               }}
             >
@@ -86,7 +86,6 @@ const SignupScreen = ({ navigation }) => {
               <Text style={styles.navButtonText}>Have an account? Sign In</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.forgotButton}
               onPress={() => navigation.navigate('Signup')}
             ></TouchableOpacity>
           </View>
