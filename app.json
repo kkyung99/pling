@@ -33,7 +33,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.plant.pling"
+      "package": "com.plant.pling",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
