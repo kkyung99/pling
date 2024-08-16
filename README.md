@@ -12,9 +12,10 @@
 <div align="center">
   <img src="https://github.com/kkyung99/pling/assets/68538307/2458efcb-122d-4484-9ad8-df9c7da10935" width="300px" />
   <img src="https://github.com/kkyung99/pling/assets/68538307/41d9c686-476a-4559-aaef-8266968c6ad9" width="300px" />
-  <img src="https://github.com/kkyung99/pling/assets/68538307/fc69470a-797f-4b0a-b12d-2e1fc5f2e051" width="300px" />
   <br/>
+  <img src="https://github.com/kkyung99/pling/assets/68538307/fc69470a-797f-4b0a-b12d-2e1fc5f2e051" width="300px" />
   <img src="https://github.com/kkyung99/pling/assets/68538307/a4b41480-dcfc-48cc-83e3-a0a8e3806983" width="300px" />
+  <br/>
   <img src="https://github.com/kkyung99/pling/assets/68538307/db3ec582-bc67-4fc4-9021-ca93f07be044" width="300px" />
   <img src="https://github.com/kkyung99/pling/assets/68538307/559288d9-2f10-4d0c-a239-ed67bc9e346b" width="300px" /> 
 </div>
